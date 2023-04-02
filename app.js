@@ -99,9 +99,9 @@ const formatMovementDate = function (date, locale) {
   const daysPassed = calcDaysPassed(new Date(), date);
   console.log(daysPassed);
 
-  if (daysPassed === 0) return "Today";
-  if (daysPassed === 1) return "Yesterday";
-  if (daysPassed <= 7) return `${daysPassed} days ago`;
+  if (daysPassed === 0) return "Idag";
+  if (daysPassed === 1) return "Igår";
+  if (daysPassed <= 7) return `${daysPassed} dagar sedan`;
 
   // const day = `${date.getDate()}`.padStart(2, 0);
   // const month = `${date.getMonth() + 1}`.padStart(2, 0);
@@ -125,7 +125,7 @@ const displayMovements = function (acc, sort = false) {
     : acc.movements;
 
   movs.forEach(function (mov, i) {
-    const type = mov > 0 ? "deposit" : "withdrawal";
+    const type = mov > 0 ? "uttag" : "innsättning";
 
     const date = new Date(acc.movementsDates[i]);
     const displayDate = formatMovementDate(date, acc.locale);
@@ -244,7 +244,7 @@ btnLogin.addEventListener("click", function (e) {
 
   if (currentAccount?.pin === +inputLoginPin.value) {
     // Display UI and message
-    labelWelcome.textContent = `Välkommen tillbaka, ${
+    labelWelcome.textContent = `Välkommen, ${
       currentAccount.owner.split(" ")[0]
     }`;
     containerApp.style.opacity = 100;
